@@ -18,7 +18,7 @@ public class TestController {
     public List<Test> getTestList() {
         Test test = new Test();
         test.setId(1);
-        test.setName("123");
+//        test.setName("123");
         List<Test> list = testService.getTestList(test);
         return list;
     }

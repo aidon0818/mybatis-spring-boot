@@ -14,9 +14,7 @@ public class TestService {
     private TestMapper testMapper;
 
     public List<Test> getTestList(Test test) {
-//        if (city.getPage() != null && city.getRows() != null) {
-//            PageHelper.startPage(city.getPage(), city.getRows());
-//        }
+        //分页
         if(test.getPage()!=null && test.getRows()!=null){
             PageHelper.startPage(test.getPage(), test.getRows());
         }
