@@ -14,10 +14,10 @@
             <property name="mappers" value="tk.mybatis.springboot.util.MyMapper"/>
         </plugin>
 
-        <jdbcConnection driverClass="${druid.driver-class}"
-                        connectionURL="${druid.url}"
-                        userId="${druid.username}"
-                        password="${druid.password}">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/wechatorder"
+                        userId="root"
+                        password="root">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="tk.mybatis.springboot.model" targetProject="src/main/java"/>

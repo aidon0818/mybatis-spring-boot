@@ -3,7 +3,9 @@ package tk.mybatis.springboot.service;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.springboot.mapper.CityMapper;
 import tk.mybatis.springboot.mapper.TestMapper;
+import tk.mybatis.springboot.model.City;
 import tk.mybatis.springboot.model.Test;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 public class TestService {
     @Autowired
     private TestMapper testMapper;
+
 
     public List<Test> getTestList(Test test) {
         //分页
