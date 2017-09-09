@@ -1,12 +1,10 @@
 package tk.mybatis.springboot.model;
 
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "product_category")
-@DynamicUpdate
 public class ProductCategory  extends BaseEntity{
     @Id
     @Column(name = "category_id")

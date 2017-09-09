@@ -1,13 +1,11 @@
 package tk.mybatis.springboot.model;
 
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "order_master")
-@DynamicUpdate
 public class OrderMaster {
     @Id
     @Column(name = "order_id")

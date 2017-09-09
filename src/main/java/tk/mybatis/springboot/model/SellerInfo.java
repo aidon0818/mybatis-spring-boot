@@ -1,12 +1,10 @@
 package tk.mybatis.springboot.model;
 
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "seller_info")
-@DynamicUpdate
 public class SellerInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
