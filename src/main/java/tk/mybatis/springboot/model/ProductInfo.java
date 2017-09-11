@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "product_info")
-public class ProductInfo {
+public class ProductInfo extends PageEntity{
     @Id
     @Column(name = "product_id")
     private String productId;
