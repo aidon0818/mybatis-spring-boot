@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "product_category")
-public class ProductCategory  extends BaseEntity{
+public class ProductCategory  extends PageEntity{
     @Id
     @Column(name = "category_id")
     private Integer categoryId;
@@ -119,4 +119,5 @@ public class ProductCategory  extends BaseEntity{
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
 }

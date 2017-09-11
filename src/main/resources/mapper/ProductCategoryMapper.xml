@@ -11,4 +11,16 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
+    <select id="findByCategoryTypeIn" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT category_id,category_name,category_type,create_time,update_time
+        FROM product_category
+        <where>
+            <if test="null!=list">
+                  category_type IN
+            <foreach collection="list" index="i" item="id" open="(" separator="," close=")">
+                  #{id}
+            </foreach>
+            </if>
+        </where>
+    </select>
 </mapper>
