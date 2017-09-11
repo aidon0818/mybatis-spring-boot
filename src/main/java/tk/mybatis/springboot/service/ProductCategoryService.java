@@ -1,12 +1,11 @@
 package tk.mybatis.springboot.service;
 
 import com.github.pagehelper.PageHelper;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.springboot.mapper.ProductCategoryMapper;
 import tk.mybatis.springboot.model.ProductCategory;
-
-import java.util.List;
 
 @Service
 public class ProductCategoryService {
@@ -17,7 +16,8 @@ public class ProductCategoryService {
         if (productCategory.getPage() != null && productCategory.getRows() != null) {
             PageHelper.startPage(productCategory.getPage(), productCategory.getRows());
         }
-        return productCategoryMapper.selectAll();
+        List<ProductCategory> list= (List<ProductCategory>) productCategoryMapper.selectAll();
+        return list;
     }
 
     public ProductCategory getById(Integer id) {
@@ -28,11 +28,17 @@ public class ProductCategoryService {
         productCategoryMapper.deleteByPrimaryKey(id);
     }
 
-    public void save(ProductCategory country) {
-        if (country.getId() != null) {
-            productCategoryMapper.updateByPrimaryKey(country);
+    public ProductCategory save(ProductCategory productCategory) {
+        if (productCategory.getCategoryId() != null) {
+            productCategoryMapper.updateByPrimaryKey(productCategory);
         } else {
-            productCategoryMapper.insert(country);
+            productCategoryMapper.insert(productCategory);
         }
+        return productCategory;
+    }
+
+    public List<ProductCategory> findByCategoryTypeIn(List<Integer> typeList) {
+        List<ProductCategory> productCategoryList = productCategoryMapper.findByCategoryTypeIn(typeList);
+        return productCategoryList;
     }
 }
