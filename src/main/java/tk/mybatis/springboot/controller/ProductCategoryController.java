@@ -72,5 +72,4 @@ public class ProductCategoryController {
             productDTOList.add(productDTO);
         }
     }
-
 }
