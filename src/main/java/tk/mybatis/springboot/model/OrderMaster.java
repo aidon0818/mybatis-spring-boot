@@ -1,12 +1,15 @@
 package tk.mybatis.springboot.model;
 
 
+import tk.mybatis.springboot.enumUtil.OrderStatusEnum;
+import tk.mybatis.springboot.enumUtil.PayStatusEnum;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "order_master")
-public class OrderMaster {
+public class OrderMaster extends PageEntity{
     @Id
     @Column(name = "order_id")
     private String orderId;
@@ -45,13 +48,14 @@ public class OrderMaster {
      * 订单状态, 默认为新下单
      */
     @Column(name = "order_status")
-    private Byte orderStatus;
+    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+    ;
 
     /**
      * 支付状态, 默认未支付
      */
     @Column(name = "pay_status")
-    private Byte payStatus;
+    private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
     /**
      * 创建时间
@@ -174,7 +178,7 @@ public class OrderMaster {
      *
      * @return order_status - 订单状态, 默认为新下单
      */
-    public Byte getOrderStatus() {
+    public Integer getOrderStatus() {
         return orderStatus;
     }
 
@@ -183,7 +187,7 @@ public class OrderMaster {
      *
      * @param orderStatus 订单状态, 默认为新下单
      */
-    public void setOrderStatus(Byte orderStatus) {
+    public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -192,7 +196,7 @@ public class OrderMaster {
      *
      * @return pay_status - 支付状态, 默认未支付
      */
-    public Byte getPayStatus() {
+    public Integer getPayStatus() {
         return payStatus;
     }
 
@@ -201,7 +205,7 @@ public class OrderMaster {
      *
      * @param payStatus 支付状态, 默认未支付
      */
-    public void setPayStatus(Byte payStatus) {
+    public void setPayStatus(Integer payStatus) {
         this.payStatus = payStatus;
     }
 
