@@ -2,6 +2,11 @@ package tk.mybatis.springboot.util;
 
 import tk.mybatis.springboot.dto.ResultDTO;
 
+/**
+ * @Author dong_liu
+ * @Date 2017/9/13 15:11
+ * 返回结果控制
+ */
 public class ResultDTOUtil {
     public static ResultDTO success(Object object) {
         ResultDTO resultDTO = new ResultDTO();
