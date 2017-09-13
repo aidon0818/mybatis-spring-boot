@@ -7,13 +7,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import tk.mybatis.springboot.mapper.ProductInfoMapper;
 import tk.mybatis.springboot.model.ProductInfo;
 
 import java.math.BigDecimal;
 import java.util.UUID;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -43,15 +40,15 @@ public class ProductInfoServiceTest {
     @Test
     public void save() throws Exception {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        ProductInfo productInfo=new ProductInfo();
+    ProductInfo productInfo=new ProductInfo();
         productInfo.setProductId(uuid);
         productInfo.setProductName("烧烤");
-        productInfo.setProductPrice(new BigDecimal(3.0));
+        productInfo.setProductPrice(new BigDecimal(12.0));
         productInfo.setProductStock(10);
-        productInfo.setCategoryType(1);
-        ProductInfo result = productInfoService.save(productInfo);
+        productInfo.setCategoryType(0);
+    ProductInfo result = productInfoService.save(productInfo);
         Assert.assertNotNull(result);
-    }
+}
 
     @Test
     public void findByProductStatus() throws Exception {
