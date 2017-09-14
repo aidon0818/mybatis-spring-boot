@@ -15,4 +15,8 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
+    <select id="findByOrderid" resultMap="BaseResultMap" parameterType="tk.mybatis.springboot.model.OrderDetail">
+      SELECT * FROM order_detail WHERE order_id=#{orderId}
+
+    </select>
 </mapper>
