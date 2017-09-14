@@ -11,5 +11,5 @@ import tk.mybatis.springboot.util.MyMapper;
  * 订单描述
  */
 public interface OrderDetailMapper extends MyMapper<OrderDetail> {
-    List<OrderDetail> findByOrderid(String orderId);
+    List<OrderDetail> findByOrderid(OrderDetail orderDetail);
 }
