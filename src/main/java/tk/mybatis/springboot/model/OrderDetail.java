@@ -1,12 +1,13 @@
 package tk.mybatis.springboot.model;
 
 
+import java.awt.print.Pageable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "order_detail")
-public class OrderDetail {
+public class OrderDetail extends PageEntity{
     @Id
     @Column(name = "detail_id")
     private String detailId;

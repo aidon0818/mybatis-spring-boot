@@ -45,7 +45,7 @@ public class ProductInfo extends PageEntity{
      * 商品状态,0正常1下架
      */
     @Column(name = "product_status")
-    private Byte productStatus;
+    private Integer productStatus;
 
     /**
      * 类目编号
@@ -174,7 +174,7 @@ public class ProductInfo extends PageEntity{
      *
      * @return product_status - 商品状态,0正常1下架
      */
-    public Byte getProductStatus() {
+    public Integer getProductStatus() {
         return productStatus;
     }
 
@@ -183,7 +183,7 @@ public class ProductInfo extends PageEntity{
      *
      * @param productStatus 商品状态,0正常1下架
      */
-    public void setProductStatus(Byte productStatus) {
+    public void setProductStatus(Integer productStatus) {
         this.productStatus = productStatus;
     }
 
