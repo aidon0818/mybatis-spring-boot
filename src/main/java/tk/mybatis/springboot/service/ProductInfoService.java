@@ -13,9 +13,9 @@ public class ProductInfoService {
     @Autowired
     private ProductInfoMapper productInfoMapper;
 
-    public List<ProductInfo> getAll(ProductInfo productCategory) {
-        if (productCategory.getPage() != null && productCategory.getRows() != null) {
-            PageHelper.startPage(productCategory.getPage(), productCategory.getRows());
+    public List<ProductInfo> getAll(ProductInfo productInfo) {
+        if (productInfo.getPage() != null && productInfo.getRows() != null) {
+            PageHelper.startPage(productInfo.getPage(), productInfo.getRows());
         }
         List<ProductInfo> list = (List<ProductInfo>) productInfoMapper.selectAll();
         return list;
@@ -30,12 +30,11 @@ public class ProductInfoService {
     }
 
     public ProductInfo save(ProductInfo productInfo) {
-//        if (productInfo.getProductId() != null) {
-//            productInfoMapper.updateByPrimaryKey(productInfo);
-//        } else {
-//            productInfoMapper.insert(productInfo);
-//        }
-        productInfoMapper.insert(productInfo);
+        if (productInfo.getProductId() != null) {
+            productInfoMapper.updateByPrimaryKey(productInfo);
+        } else {
+            productInfoMapper.insert(productInfo);
+        }
         return productInfo;
     }
 
