@@ -2,7 +2,7 @@ package tk.mybatis.springboot.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.sun.tools.javac.util.List;
+import java.util.List;
 import tk.mybatis.springboot.enumUtil.OrderStatusEnum;
 import tk.mybatis.springboot.enumUtil.PayStatusEnum;
 import tk.mybatis.springboot.model.OrderDetail;
