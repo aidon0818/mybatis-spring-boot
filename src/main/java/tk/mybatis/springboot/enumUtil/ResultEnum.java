@@ -1,6 +1,7 @@
 package tk.mybatis.springboot.enumUtil;
 
 
+
 /**
  * Created by 廖师兄
  * 2017-06-11 18:56
@@ -54,5 +55,13 @@ public enum ResultEnum {
     ResultEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
