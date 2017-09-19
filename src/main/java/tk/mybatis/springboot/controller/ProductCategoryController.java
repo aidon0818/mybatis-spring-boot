@@ -1,5 +1,6 @@
 package tk.mybatis.springboot.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Slf4j
 @RestController
 @RequestMapping("/buyer/product")
+
 public class ProductCategoryController {
     @Autowired
     private ProductCategoryService productCategoryService;
@@ -44,7 +48,6 @@ public class ProductCategoryController {
                     findByCategoryTypeIn(categoryTypeList);
             productDTOList = new ArrayList<>();
             setProductDTO(productInfoList, productCategoryList, productDTOList);
-
             return ResultDTOUtil.success(productDTOList);
         } catch (Exception e) {
             return ResultDTOUtil.error(1, "返回信息错误！");
