@@ -10,21 +10,23 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by Aidon on 17/9/25.
  */
-public class ThreadImport extends Thread{
-    private String url="jdbc:mysql://127.0.0.1/test";
-    private String user="root";
-    private String password="root";
-    public Connection getConnect(){
+public class ThreadImport extends Thread {
+    private String url = "jdbc:mysql://127.0.0.1/test";
+    private String user = "root";
+    private String password = "root";
+
+    public Connection getConnect() {
         Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con= DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return con;
     }
-    public void multiThreadImport( final int ThreadNum) {
+
+    public void multiThreadImport(final int ThreadNum) {
         final CountDownLatch cdl = new CountDownLatch(ThreadNum);
         long starttime = System.currentTimeMillis();
         for (int k = 1; k <= ThreadNum; k++) {
@@ -42,9 +44,10 @@ public class ThreadImport extends Thread{
                                 st.executeBatch();
                             }
                         }
-                        cdl.countDown();
+
                     } catch (Exception e) {
                     } finally {
+                        cdl.countDown();
                         try {
                             con.close();
                         } catch (SQLException e) {
@@ -64,9 +67,9 @@ public class ThreadImport extends Thread{
     }
 
     public static void main(String[] args) {
-        ThreadImport ti=new ThreadImport();
+        ThreadImport ti = new ThreadImport();
         ti.multiThreadImport(10);
-        System.out.println("笔记本CPU数:"+Runtime.getRuntime().availableProcessors());
+        System.out.println("笔记本CPU数:" + Runtime.getRuntime().availableProcessors());
     }
 
 
