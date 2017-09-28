@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.springboot.dto.OrderDTO;
 import tk.mybatis.springboot.model.OrderDetail;
+import tk.mybatis.springboot.model.OrderMaster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,8 @@ public class OrderServiceImplTest {
     @Test
     public void create() throws Exception {
         OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setBuyerName("廖师兄");
-        orderDTO.setBuyerAddress("幕课网");
+        orderDTO.setBuyerName("MYSQL");
+        orderDTO.setBuyerAddress("深圳");
         orderDTO.setBuyerPhone("123456789012");
         orderDTO.setBuyerOpenid(BUYER_OPENID);
         //购物车
@@ -64,7 +65,10 @@ public class OrderServiceImplTest {
 
     @Test
     public void findList() throws Exception {
-
+        OrderMaster orderMaster = new OrderMaster();
+        orderMaster.setPage(1);
+        orderMaster.setRows(3);
+        orderService.findList(orderMaster);
     }
 
     @Test

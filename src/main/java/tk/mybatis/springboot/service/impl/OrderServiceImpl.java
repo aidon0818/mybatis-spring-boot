@@ -22,6 +22,7 @@ import tk.mybatis.springboot.model.ProductInfo;
 import tk.mybatis.springboot.service.OrderService;
 import tk.mybatis.springboot.service.ProductService;
 import tk.mybatis.springboot.util.KeyUtil;
+import tk.mybatis.springboot.util.OrderMaster2OrderDTOConverter;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -115,8 +116,9 @@ public class OrderServiceImpl implements OrderService {
         if (orderMaster.getPage() != null && orderMaster.getRows() != null) {
             PageHelper.startPage(orderMaster.getPage(), orderMaster.getRows());
         }
-//        List<OrderDTO> orderDTOList=
-        return null;
+        List<OrderMaster> orderDTOList = orderMasterMapper.selectAll();
+        List<OrderDTO> orderDTOListNew = OrderMaster2OrderDTOConverter.convert(orderDTOList);
+        return orderDTOListNew;
     }
 
     /**
@@ -136,7 +138,7 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
         //返回库存
-        if (increaseStock(orderDTO)){
+        if (increaseStock(orderDTO)) {
             throw new SellException(ResultEnum.ORDER_DETAIL_EMPTY);
         }
         //如果已支付, 需要退款

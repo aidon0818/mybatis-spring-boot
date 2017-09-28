@@ -39,7 +39,9 @@ public class OrderMasterServiceTest {
     @Test
     public void findByBuyOpenId() throws Exception {
         OrderMaster orderMaster = new OrderMaster();
-        orderMaster.setOrderId("1234567");
+        orderMaster.setBuyerOpenid("1101110");
+        orderMaster.setPage(5);
+        orderMaster.setRows(5);
         List<OrderMaster> orderMasterList = (List<OrderMaster>) orderMasterService.findByBuyOpenId(orderMaster);
         Assert.assertNotEquals(0, orderMasterList.size());
     }
