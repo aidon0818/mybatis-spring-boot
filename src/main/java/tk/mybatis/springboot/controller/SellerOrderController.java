@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import tk.mybatis.springboot.dto.OrderDTO;
+import tk.mybatis.springboot.enumUtil.ResultEnum;
+import tk.mybatis.springboot.exception.SellException;
 import tk.mybatis.springboot.model.Country;
 import tk.mybatis.springboot.model.OrderMaster;
 import tk.mybatis.springboot.service.OrderService;
@@ -53,5 +55,75 @@ public class SellerOrderController {
         return new ModelAndView("order/list", map);
     }
 
+    /**
+     * 取消订单
+     *
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/cancel")
+    public ModelAndView cancel(@RequestParam("orderId") String orderId,
+                               Map<String, Object> map) {
+        try {
+            OrderDTO orderDTO = orderService.findOne(orderId);
+            orderService.cancel(orderDTO);
+        } catch (SellException e) {
+            log.error("【卖家端取消订单】发生异常{}", e);
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("common/error", map);
+        }
 
+        map.put("msg", ResultEnum.ORDER_CANCEL_SUCCESS.getMessage());
+        map.put("url", "/sell/seller/order/list");
+        return new ModelAndView("common/success");
+    }
+
+    /**
+     * 订单详情
+     *
+     * @param orderId
+     * @param map
+     * @return
+     */
+    @GetMapping("/detail")
+    public ModelAndView detail(@RequestParam("orderId") String orderId,
+                               Map<String, Object> map) {
+        OrderDTO orderDTO = new OrderDTO();
+        try {
+            orderDTO = orderService.findOne(orderId);
+        } catch (SellException e) {
+            log.error("【卖家端查询订单详情】发生异常{}", e);
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("orderDTO", orderDTO);
+        return new ModelAndView("order/detail", map);
+    }
+
+    /**
+     * 完结订单
+     *
+     * @param orderId
+     * @param map
+     * @return
+     */
+    @GetMapping("/finish")
+    public ModelAndView finished(@RequestParam("orderId") String orderId,
+                                 Map<String, Object> map) {
+        try {
+            OrderDTO orderDTO = orderService.findOne(orderId);
+            orderService.finish(orderDTO);
+        } catch (SellException e) {
+            log.error("【卖家端完结订单】发生异常{}", e);
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/order/list");
+            return new ModelAndView("common/error", map);
+        }
+        map.put("msg", ResultEnum.ORDER_FINISH_SUCCESS.getMessage());
+        map.put("url", "/sell/seller/order/list");
+        return new ModelAndView("common/success");
+    }
 }
