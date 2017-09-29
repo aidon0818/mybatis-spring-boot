@@ -122,8 +122,9 @@ public class OrderServiceImpl implements OrderService {
         if (orderMaster.getPage() != null && orderMaster.getRows() != null) {
             PageHelper.startPage(orderMaster.getPage(), orderMaster.getRows());
         }
-        List<OrderMaster> orderDTOList = orderMasterMapper.selectAll();
-        List<OrderDTO> orderDTOListNew = OrderMaster2OrderDTOConverter.convert(orderDTOList);
+        List<OrderMaster> orderMasterPage = orderMasterMapper.findByBuyOpenId(orderMaster);
+//        List<OrderMaster> orderDTOList = orderMasterMapper.selectAll();
+        List<OrderDTO> orderDTOListNew = OrderMaster2OrderDTOConverter.convert(orderMasterPage);
         return orderDTOListNew;
     }
 
