@@ -38,6 +38,7 @@ public class ProductCategoryController {
     @GetMapping("/list")
     public ResultDTO getAll(ProductCategory productCategory) {
         ProductInfo productInfo = new ProductInfo();
+        productInfo.setProductStatus(0);
         List<ProductDTO> productDTOList = null;
         try {
             List<ProductInfo> productInfoList = productInfoService.getAll(productInfo);
