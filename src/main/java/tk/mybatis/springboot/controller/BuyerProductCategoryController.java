@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/buyer/product")
 
-public class ProductCategoryController {
+public class BuyerProductCategoryController {
     @Autowired
     private ProductCategoryService productCategoryService;
 
