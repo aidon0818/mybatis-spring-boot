@@ -13,6 +13,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 /**
  * Created by Dong_Liu
  * date：2017/9/29
+ * 学习地址：http://www.cnblogs.com/xdp-gacl/p/5193279.html
  */
 @Component
 @ServerEndpoint("/webSocket")
