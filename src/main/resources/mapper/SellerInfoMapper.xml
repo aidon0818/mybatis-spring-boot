@@ -12,4 +12,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <select id="findByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT  * FROM seller_info t WHERE t.openid=#{openid}
+  </select>
 </mapper>
