@@ -14,6 +14,7 @@ import tk.mybatis.springboot.dto.ResultDTO;
 import tk.mybatis.springboot.enumUtil.ResultEnum;
 import tk.mybatis.springboot.exception.SellException;
 import tk.mybatis.springboot.form.OrderForm;
+import tk.mybatis.springboot.model.OrderMaster;
 import tk.mybatis.springboot.service.BuyerService;
 import tk.mybatis.springboot.service.OrderService;
 import tk.mybatis.springboot.util.OrderForm2OrderDTOConverter;
@@ -86,11 +87,12 @@ public class BuyerOrderController {
             log.error("【查询订单列表】openid为空");
             throw new SellException(ResultEnum.PARAM_ERROR);
         }
+        OrderMaster orderMaster = new OrderMaster();
+        orderMaster.setPage(page - 1);
+        orderMaster.setRows(size);
+        orderMaster.setBuyerOpenid(openid);
+        List<OrderDTO> orderDTOPage = orderService.findList(orderMaster);
+        return ResultVOUtil.success(orderDTOPage);
 
-//        PageRequest request = new PageRequest(page, size);
-//        Page<OrderDTO> orderDTOPage = orderService.findList(openid, request);
-
-//        return ResultVOUtil.success(orderDTOPage.getContent());
-        return null;
     }
 }
