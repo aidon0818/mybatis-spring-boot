@@ -20,7 +20,9 @@ import tk.mybatis.springboot.model.OrderDetail;
 import tk.mybatis.springboot.model.OrderMaster;
 import tk.mybatis.springboot.model.ProductInfo;
 import tk.mybatis.springboot.service.OrderService;
+import tk.mybatis.springboot.service.PayService;
 import tk.mybatis.springboot.service.ProductService;
+import tk.mybatis.springboot.service.WebSocket;
 import tk.mybatis.springboot.util.KeyUtil;
 import tk.mybatis.springboot.util.OrderMaster2OrderDTOConverter;
 
@@ -40,6 +42,10 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailMapper orderDetailMapper;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private WebSocket webSocket;
+    @Autowired
+    private PayService payService;
 
     private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
@@ -65,7 +71,7 @@ public class OrderServiceImpl implements OrderService {
         //4. 扣库存
         decreaseStock(orderDTO);
         //发送websocket消息
-//        webSocket.sendMessage(orderDTO.getOrderId());
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
@@ -143,7 +149,7 @@ public class OrderServiceImpl implements OrderService {
         }
         //如果已支付, 需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-//            payService.refund(orderDTO);
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }
