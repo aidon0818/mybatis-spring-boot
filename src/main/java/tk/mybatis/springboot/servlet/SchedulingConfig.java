@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 /**
  * Created by Dong_Liu
  * date：2017/10/19
+ * 定时任务
  */
 @Configuration
 @EnableScheduling // 启用定时任务
