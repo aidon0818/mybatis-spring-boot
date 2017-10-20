@@ -1,5 +1,7 @@
 package tk.mybatis.springboot.util;
 
+import com.alibaba.druid.util.StringUtils;
+
 import java.math.BigDecimal;
 
 /**
@@ -8,6 +10,12 @@ import java.math.BigDecimal;
  */
 public class Test001 {
     public static void main(String[] args) {
-
+        boolean a = StringUtils.equals("a", "a");
+        System.out.println(a);
+        Integer b = StringUtils.stringToInteger("ads123");
+        System.out.println(b);
+        //取ds和a之间的字符
+        String c = StringUtils.subString("dskeabcedeh", "ds", "a");
+        System.out.println(c);
     }
 }
