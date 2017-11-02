@@ -322,7 +322,7 @@ public class ContinueFTP {
             }
             //检查远程文件是否存在
             FTPFile[] files = ftpClient.listFiles(new String(remoteFileName.getBytes("GBK"), "iso-8859-1"));
-            if (files.length != 1 || remoteFileName.equals(files[0].getName())) {
+            if (files.length != 1 || !remoteFileName.equals(files[0].getName())) {
                 return FileStatus.File_Nonexistent;
             }
             boolean deleted = ftpClient.deleteFile(remoteFileName);
@@ -374,12 +374,13 @@ public class ContinueFTP {
         try {
             myFtp.connect("192.168.33.148", 2121, "administrator", "30116992");
 //          myFtp.ftpClient.makeDirectory(new String("歌曲".getBytes("GBK"),"iso-8859-1"));
-//            myFtp.ftpClient.changeWorkingDirectory(new String("歌曲".getBytes("GBK"), "iso-8859-1"));
+            //可以多层目录
+            myFtp.ftpClient.changeWorkingDirectory(new String("歌曲/a".getBytes("GBK"), "iso-8859-1"));
 //          myFtp.ftpClient.makeDirectory(new String("爱你等于爱自己".getBytes("GBK"),"iso-8859-1"));
 //            System.out.println(myFtp.upload("C:\\测试.rar", "/测试.rar"));
 //          System.out.println(myFtp.upload("E:\\爱你等于爱自己.mp4","/爱你等于爱自己.mp4"));
 //            System.out.println(myFtp.download("/测试.rar", "C:\\测试下载22222.rar"));
-            System.out.println(myFtp.delFile("", "/3.txt"));
+            System.out.println(myFtp.delFile("", "/aaa.txt"));
             myFtp.disconnect();
         } catch (IOException e) {
             System.out.println("连接FTP出错：" + e.getMessage());
