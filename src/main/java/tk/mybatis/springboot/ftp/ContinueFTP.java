@@ -12,6 +12,9 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 支持断点续传的FTP实用类
@@ -343,44 +346,126 @@ public class ContinueFTP {
      * @param localPath 下载后保存到本地的路径
      * @return
      */
-    public static boolean selFile(String fileName, String localPath) {
+    public List<String> selFile(String fileName, String localPath) {
         boolean success = false;
-        FTPClient ftp = new FTPClient();
+        List list = new ArrayList();
         FTPFile[] files;
+        String[] s = {"a", "b", "c"};
         try {
-            files = ftp.listFiles();
+            files = ftpClient.listFiles(localPath);
+            list = Arrays.asList(files);
             for (FTPFile f : files) {
                 if (!f.getName().equals(".") && !f.getName().equals("..")) {
                     System.out.print(f.getName() + "\t");
-                    System.out.println(ftp.getModificationTime(f.getName()));
+                    System.out.println(ftpClient.getModificationTime(f.getName()));
                 }
             }
-            success = true;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (ftp.isConnected()) {
+            if (ftpClient.isConnected()) {
                 try {
-                    ftp.disconnect();
+                    ftpClient.disconnect();
                 } catch (IOException ioe) {
                 }
             }
         }
-        return success;
+        return list;
+    }
+
+    public Boolean isExist(String fileName, String localPath) {
+        FTPFile[] files;
+        boolean status = false;
+        try {
+            //切换目录
+            ftpClient.changeWorkingDirectory(new String(localPath.getBytes("GBK"), "iso-8859-1"));
+            files = ftpClient.listFiles(fileName);
+            if (0 < files.length) {
+                status = true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (ftpClient.isConnected()) {
+                try {
+                    ftpClient.disconnect();
+                } catch (IOException ioe) {
+                }
+            }
+        }
+        return status;
+    }
+
+    /**
+     * 文件重命名
+     *
+     * @throws IOException
+     */
+    public boolean rename(String fileName, String localPath, String newFileName) {
+        boolean result = false;
+        try {
+            result = ftpClient.rename(fileName, newFileName);//重命名远程文件
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return result;
+        }
+    }
+
+    /**
+     * 复制文件.
+     *
+     * @param sourceFileName
+     * @throws IOException
+     */
+    public boolean copyFile(String sourceFileName, String sourceDir, String targetDir) throws IOException {
+        InputStream is = null;
+        boolean result = false;
+        try {
+            ftpClient.enterLocalPassiveMode();
+            // 变更工作路径
+            ftpClient.changeWorkingDirectory(sourceDir);
+            // 设置以二进制流的方式传输
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+            is = ftpClient.retrieveFileStream(new String(sourceFileName.getBytes("GBK"), "iso-8859-1"));
+            // 主动调用一次getReply()把接下来的226消费掉. 这样做是可以解决这个返回null问题
+//            ftpClient.getReply();
+            if (is != null) {
+//                ftpClient.changeWorkingDirectory(targetDir);
+//                result = ftpClient.storeFile(new String("rt.txt".getBytes("GBK"), "iso-8859-1"), is);
+                result = ftpClient.storeFile(new String("t.rar".getBytes("GBK"), "iso-8859-1"), is);
+                return result;
+            }
+
+        } finally {
+            // 关闭流
+            if (is != null) {
+                is.close();
+            }
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
         ContinueFTP myFtp = new ContinueFTP();
+        boolean result = false;
         try {
             myFtp.connect("192.168.33.148", 2121, "administrator", "30116992");
 //          myFtp.ftpClient.makeDirectory(new String("歌曲".getBytes("GBK"),"iso-8859-1"));
             //可以多层目录
-            myFtp.ftpClient.changeWorkingDirectory(new String("歌曲/a".getBytes("GBK"), "iso-8859-1"));
+//            myFtp.ftpClient.changeWorkingDirectory(new String("/歌曲".getBytes("GBK"), "iso-8859-1"));
 //          myFtp.ftpClient.makeDirectory(new String("爱你等于爱自己".getBytes("GBK"),"iso-8859-1"));
-//            System.out.println(myFtp.upload("C:\\测试.rar", "/测试.rar"));
+//          System.out.println(myFtp.upload("C:\\测试.rar", "/测试.rar"));
 //          System.out.println(myFtp.upload("E:\\爱你等于爱自己.mp4","/爱你等于爱自己.mp4"));
-//            System.out.println(myFtp.download("/测试.rar", "C:\\测试下载22222.rar"));
-            System.out.println(myFtp.delFile("", "/aaa.txt"));
+//          System.out.println(myFtp.download("/测试.rar", "C:\\测试下载22222.rar"));
+//            System.out.println(myFtp.delFile("", "/aaa.txt"));
+//            List list = myFtp.selFile("", "");
+//            boolean sta = myFtp.isExist("test1.txt", "");
+            result= myFtp.copyFile("tt.rar", "", "");
+//            result= myFtp.copyFile("re.txt", "", "");
+            System.out.println(result);
             myFtp.disconnect();
         } catch (IOException e) {
             System.out.println("连接FTP出错：" + e.getMessage());
