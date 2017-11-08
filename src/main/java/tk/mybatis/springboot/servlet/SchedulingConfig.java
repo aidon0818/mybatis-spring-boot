@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
  * Created by Dong_Liu
  * date：2017/10/19
  * 定时任务
+ * 需要的时候再打开
  */
 @Configuration
 @EnableScheduling // 启用定时任务
@@ -22,8 +23,8 @@ public class SchedulingConfig {
         @Scheduled(cron="0 0/3 8-20 * * ?")
     // 每天早八点到晚八点，间隔1分钟执行任务
         @Scheduled(cron="0 0/1 8-20 * * ?")*/
-    @Scheduled(cron = "0/20 * * * * ?") // 每20秒执行一次
-    public void scheduler() {
-        System.out.println(">>>>>>>>>>>>> scheduled ... ");
-    }
+//    @Scheduled(cron = "0/20 * * * * ?") // 每20秒执行一次
+//    public void scheduler() {
+//        System.out.println(">>>>>>>>>>>>> scheduled ... ");
+//    }
 }
