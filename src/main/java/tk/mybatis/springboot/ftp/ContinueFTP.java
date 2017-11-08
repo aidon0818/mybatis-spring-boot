@@ -286,7 +286,9 @@ public class ContinueFTP {
         while ((c = raf.read(bytes)) != -1) {
             out.write(bytes, 0, c);
             localreadbytes += c;
-            if (localreadbytes / step != process) {
+            if (0 == step) {
+                System.out.println("上传进度:100%");
+            } else if (localreadbytes / step != process) {
                 process = localreadbytes / step;
                 System.out.println("上传进度:" + process);
                 //TODO 汇报上传状态
@@ -457,13 +459,13 @@ public class ContinueFTP {
             //可以多层目录
 //            myFtp.ftpClient.changeWorkingDirectory(new String("/歌曲".getBytes("GBK"), "iso-8859-1"));
 //          myFtp.ftpClient.makeDirectory(new String("爱你等于爱自己".getBytes("GBK"),"iso-8859-1"));
-//          System.out.println(myFtp.upload("C:\\测试.rar", "/测试.rar"));
+            System.out.println(myFtp.upload("C:\\22.rar", "/测2试23456.rar"));
 //          System.out.println(myFtp.upload("E:\\爱你等于爱自己.mp4","/爱你等于爱自己.mp4"));
-//          System.out.println(myFtp.download("/测试.rar", "C:\\测试下载22222.rar"));
+//          System.out.println(myFtp.download("/22.rar", "C:\\58955.rar"));
 //            System.out.println(myFtp.delFile("", "/aaa.txt"));
 //            List list = myFtp.selFile("", "");
 //            boolean sta = myFtp.isExist("test1.txt", "");
-            result= myFtp.copyFile("tt.rar", "", "");
+//            result= myFtp.copyFile("tt.rar", "", "");
 //            result= myFtp.copyFile("re.txt", "", "");
             System.out.println(result);
             myFtp.disconnect();
