@@ -15,21 +15,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class WechatOpenConfig {
 
-    @Autowired
-    private WechatAccountConfig accountConfig;
-
-    @Bean
-    public WxMpService wxOpenService() {
-        WxMpService wxOpenService = new WxMpServiceImpl();
-        wxOpenService.setWxMpConfigStorage(wxOpenConfigStorage());
-        return wxOpenService;
-    }
-
-    @Bean
-    public WxMpConfigStorage wxOpenConfigStorage() {
-        WxMpInMemoryConfigStorage wxMpInMemoryConfigStorage = new WxMpInMemoryConfigStorage();
-        wxMpInMemoryConfigStorage.setAppId(accountConfig.getOpenAppId());
-        wxMpInMemoryConfigStorage.setSecret(accountConfig.getOpenAppSecret());
-        return wxMpInMemoryConfigStorage;
-    }
+//    @Autowired
+//    private WechatAccountConfig accountConfig;
+//
+//    @Bean
+//    public WxMpService wxOpenService() {
+//        WxMpService wxOpenService = new WxMpServiceImpl();
+//        wxOpenService.setWxMpConfigStorage(wxOpenConfigStorage());
+//        return wxOpenService;
+//    }
+//
+//    @Bean
+//    public WxMpConfigStorage wxOpenConfigStorage() {
+//        WxMpInMemoryConfigStorage wxMpInMemoryConfigStorage = new WxMpInMemoryConfigStorage();
+//        wxMpInMemoryConfigStorage.setAppId(accountConfig.getOpenAppId());
+//        wxMpInMemoryConfigStorage.setSecret(accountConfig.getOpenAppSecret());
+//        return wxMpInMemoryConfigStorage;
+//    }
 }
