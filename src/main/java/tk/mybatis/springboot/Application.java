@@ -29,6 +29,7 @@ public class Application extends WebMvcConfigurerAdapter {
     String home() {
         return "redirect:countries";
     }
+
     @Autowired
     private RestTemplateBuilder builder;
 

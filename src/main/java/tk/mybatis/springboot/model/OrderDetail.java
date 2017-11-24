@@ -12,7 +12,7 @@ public class OrderDetail extends PageEntity{
     @Column(name = "detail_id")
     private String detailId;
 
-    @Column(name = "order_id")
+        @Column(name = "order_id")
     private String orderId;
 
     @Column(name = "product_id")

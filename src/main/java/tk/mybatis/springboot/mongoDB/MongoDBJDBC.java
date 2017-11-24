@@ -25,10 +25,8 @@ public class MongoDBJDBC {
             MongoCredential credential = MongoCredential.createScramSha1Credential("myadmin", "mydb", "admin".toCharArray());
             List<MongoCredential> credentials = new ArrayList<MongoCredential>();
             credentials.add(credential);
-
             //通过连接认证获取MongoDB连接
             MongoClient mongoClient = new MongoClient(addrs, credentials);
-
             //连接到数据库
             MongoDatabase mongoDatabase = mongoClient.getDatabase("mydb");
             System.out.println("Connect to database successfully");

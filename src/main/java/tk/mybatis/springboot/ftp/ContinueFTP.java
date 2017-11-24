@@ -392,6 +392,7 @@ public class ContinueFTP {
                 try {
                     ftpClient.disconnect();
                 } catch (IOException ioe) {
+
                 }
             }
         }
@@ -459,7 +460,7 @@ public class ContinueFTP {
             //可以多层目录
 //            myFtp.ftpClient.changeWorkingDirectory(new String("/歌曲".getBytes("GBK"), "iso-8859-1"));
 //          myFtp.ftpClient.makeDirectory(new String("爱你等于爱自己".getBytes("GBK"),"iso-8859-1"));
-            System.out.println(myFtp.upload("C:\\22.rar", "/测2试23456.rar"));
+            System.out.println(myFtp.upload("C:\\2.txt", "/2a.txt"));
 //          System.out.println(myFtp.upload("E:\\爱你等于爱自己.mp4","/爱你等于爱自己.mp4"));
 //          System.out.println(myFtp.download("/22.rar", "C:\\58955.rar"));
 //            System.out.println(myFtp.delFile("", "/aaa.txt"));

@@ -12,8 +12,8 @@ import tk.mybatis.springboot.service.PushMessageService;
  */
 @Service
 public class PushMessageServiceImpl implements PushMessageService {
-    @Autowired
-    private WxMpService wxMpService;
+//    @Autowired
+//    private WxMpService wxMpService;
 
     @Override
     public void orderStatus(OrderDTO orderDTO1) {
