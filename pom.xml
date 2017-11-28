@@ -17,8 +17,9 @@
     <properties>
         <java.version>1.8</java.version>
         <mybatis.spring.version>1.2.4</mybatis.spring.version>
+        <!-- aliyun -->
+        <aliyun.version>RELEASE</aliyun.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -181,7 +182,22 @@
             <artifactId>mongodb-driver</artifactId>
             <version>3.5.0</version>
         </dependency>
-
+        <!--aLiyun-->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyun.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-sts</artifactId>
+            <version>${aliyun.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>${aliyun.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
