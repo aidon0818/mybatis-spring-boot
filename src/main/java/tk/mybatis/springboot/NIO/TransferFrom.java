@@ -20,6 +20,8 @@ public class TransferFrom {
             long position = 0;
             long count = fromChannel.size();
             toChannel.transferFrom(fromChannel, position, count);
+            //transferTo()方法将数据从FileChannel传输到其他的channel中。
+            toChannel.transferTo(position, count, fromChannel);
         } catch (IOException e) {
             e.printStackTrace();
         }
