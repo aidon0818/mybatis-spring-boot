@@ -11,7 +11,7 @@ import java.util.concurrent.CountDownLatch;
  * Created by Aidon on 17/9/25.
  */
 public class ThreadImport extends Thread {
-    private String url = "jdbc:mysql://127.0.0.1/test";
+    private String url = "jdbc:mysql://localhost/test?characterEncoding=utf8&useSSL=false";
     private String user = "root";
     private String password = "root";
 
@@ -36,11 +36,11 @@ public class ThreadImport extends Thread {
                     Connection con = getConnect();
                     try {
                         Statement st = con.createStatement();
-                        for (int i = 1; i <= 80000 / ThreadNum; i++) {
+                        for (int i = 1; i <= 8 / ThreadNum; i++) {
                             String uuid = UUID.randomUUID().toString();
-                            st.addBatch("insert into test.test(id,name) " +
+                            st.addBatch("insert into test(id,name) " +
                                     "values('" + uuid + "','" + i + "')");
-                            if (i % 500 == 0) {
+                            if (i % 2 == 0) {
                                 st.executeBatch();
                             }
                         }
