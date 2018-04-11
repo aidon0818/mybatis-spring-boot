@@ -1,7 +1,6 @@
 package tk.mybatis.springboot.util;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class KeyUtil {
 
@@ -15,6 +14,10 @@ public class KeyUtil {
         Integer number = random.nextInt(900000) + 100000;
 
         return System.currentTimeMillis() + String.valueOf(number);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(genUniqueKey());
     }
 
 }
