@@ -23,7 +23,7 @@ public class RSAUtilApi {
     /**
      * 加密
      */
-    public String setRSAHelper(String data) {
+    public String setRSAHelper(String msgType, String channel, String data) {
         String obj = "";
         Map<String, String> dataMap = new HashMap<>();
         RSAUtil rsaUtil = new RSAUtil();
@@ -32,8 +32,8 @@ public class RSAUtilApi {
             byte[] encryptStrByte = rsaUtil.encryptByPublicKey(data.getBytes(), publicKey);
             byte[] btt = Base64.encodeBase64(encryptStrByte);
             obj = new String(btt);
-            dataMap.put("channel", "GXYJ");
-            dataMap.put("msgType", "10");
+            dataMap.put("channel", channel);
+            dataMap.put("msgType", msgType);
             dataMap.put("obj", obj);
             jsonData = JSONObject.toJSONString(dataMap);
             System.out.println("加密后：" + jsonData);
@@ -52,7 +52,6 @@ public class RSAUtilApi {
         try {
             JSONObject jsonObject = JSONObject.parseObject(data);
             String obj = jsonObject.getString("obj");
-            byte[] jsonStr = data.getBytes();
             byte[] decryptStrByte = rsaUtil.decryptByPrivateKey(Base64.decodeBase64(obj), privateKey);
             jsonData = new String(decryptStrByte);
             System.out.println("解密后：" + jsonData);
@@ -74,7 +73,7 @@ public class RSAUtilApi {
         mapStr.put("terminalId", "58897140");
         mapStr.put("traceNo", "100130");
         String str = JSON.toJSONString(mapStr);
-        String data = rsaHelperApi.setRSAHelper(str);
+        String data = rsaHelperApi.setRSAHelper("GXYJ","10",str);
         String newData = rsaHelperApi.getRSAHelper(data);
         System.out.println(newData);
     }
