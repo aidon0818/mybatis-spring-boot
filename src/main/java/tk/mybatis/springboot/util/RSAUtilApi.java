@@ -38,7 +38,7 @@ public class RSAUtilApi {
             jsonData = JSONObject.toJSONString(dataMap);
             System.out.println("加密后：" + jsonData);
         } catch (Exception e) {
-            logger.error("RSAHelperApi -- setRSAHelper is fail:" + e.getMessage());
+            logger.error("RSAHelperApi -- setRSAHelper is fail:" + e);
         }
         return jsonData;
     }
@@ -56,7 +56,7 @@ public class RSAUtilApi {
             jsonData = new String(decryptStrByte);
             System.out.println("解密后：" + jsonData);
         } catch (Exception e) {
-            logger.error("RSAHelperApi -- getRSAHelper is fail:" + e.getMessage());
+            logger.error("RSAHelperApi -- getRSAHelper is fail:" + e);
         }
         return jsonData;
     }
