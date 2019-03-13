@@ -11,9 +11,9 @@ import java.util.TreeSet;
  */
 public class TreeSetTest {
     public static void main(String[] args) {
-        test4();
+        test();
     }
-    private static void test4(){
+    private static void test(){
         String str="8 10 15 5 2 7";
         String[] datas = str.split(" ");
 
