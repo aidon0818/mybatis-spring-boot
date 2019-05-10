@@ -12,51 +12,79 @@ import java.util.*;
  */
 public class ArrayListTest {
     public static void main(String[] args) {
-        test2();
+        test3();
     }
 
     public static void test2() {
 
         List<CartDTO> list1 = new ArrayList<CartDTO>();
-        for (int i = 0; i < 2; i++) {
-            CartDTO cartDTO = new CartDTO("A" + i, i);
-            cartDTO.setAmt(new BigDecimal(i));
-            cartDTO.setCreateTime(new Date());
-            list1.add(cartDTO);
-        }
+        CartDTO cartDTO = new CartDTO("A", 1);
+        cartDTO.setAmt(new BigDecimal(1));
+        cartDTO.setCreateTime(new Date());
+        list1.add(cartDTO);
 
         List<CartDTO> list2 = new ArrayList<CartDTO>();
-        for (int i = 4; i < 6; i++) {
-            CartDTO cartDTO = new CartDTO("A" + i, i);
-            cartDTO.setAmt(new BigDecimal(i));
-            cartDTO.setCreateTime(new Date());
-            list2.add(cartDTO);
-        }
+        CartDTO cartDTO1 = new CartDTO("A", 1);
+        cartDTO1.setAmt(new BigDecimal(2));
+        cartDTO1.setCreateTime(new Date());
+        list2.add(cartDTO1);
+
         List<CartDTO> list3 = new ArrayList<CartDTO>();
         list3.addAll(list1);
         list3.addAll(list2);
         List<CartDTO> newList = new ArrayList<CartDTO>();
-        Set<CartDTO> personSet = new TreeSet<>((o1, o2) -> o1.getProductQuantity().compareTo(o2.getProductQuantity()));
-        personSet.addAll(list3);
-        newList.addAll(personSet);
+        List<CartDTO> productIdList = new ArrayList<CartDTO>();
+        Set<CartDTO> productId = new TreeSet<>((o1, o2) -> o1.getProductId().compareTo(o2.getProductId()));
+        List<CartDTO> productQuantityList = new ArrayList<CartDTO>();
+        Set<CartDTO> productQuantity = new TreeSet<>((o1, o2) -> o1.getProductQuantity().compareTo(o2.getProductQuantity()));
+        List<CartDTO> amtList = new ArrayList<CartDTO>();
+        Set<CartDTO> amt = new TreeSet<>((o1, o2) -> o1.getAmt().compareTo(o2.getAmt()));
+        List<CartDTO> createTimeList = new ArrayList<CartDTO>();
+        Set<CartDTO> createTime = new TreeSet<>((o1, o2) -> o1.getCreateTime().compareTo(o2.getCreateTime()));
+        productId.addAll(list3);
+        productQuantity.addAll(list3);
+        amt.addAll(list3);
+        productIdList.addAll(productId);
+        productQuantityList.addAll(productQuantity);
+        amtList.addAll(amt);
+        createTimeList.addAll(createTime);
+        newList.addAll(amtList);
         System.out.println(newList.size());
-        for (CartDTO c:newList) {
+        for (CartDTO c : newList) {
             System.out.println(c);
         }
-
     }
 
-    public static void test3() {
-        List<String> list1 = new ArrayList<String>();
-        list1.add("1");
-        list1.add("2");
-        List<String> list2 = new ArrayList<String>();
-        list2.add("1");
-        List<String> list3 = new ArrayList<String>();
-        list3.addAll(list1);
-        list3.addAll(list2);
-        list3.stream().distinct();
-        System.out.println(list3);
+    private static void test3() {
+        List<CartDTO> list1 = new ArrayList<CartDTO>();
+        for (int i = 0; i < 1000; i++) {
+            CartDTO cartDTO = new CartDTO("A" + i, 1);
+            cartDTO.setAmt(new BigDecimal(i));
+            cartDTO.setCreateTime(new Date());
+            list1.add(cartDTO);
+        }
+        List<CartDTO> list2 = new ArrayList<CartDTO>();
+        for (int i = 0; i < 998; i++) {
+            CartDTO cartDTO1 = new CartDTO("A" + i, 1);
+            cartDTO1.setAmt(new BigDecimal(i));
+            cartDTO1.setCreateTime(new Date());
+            list2.add(cartDTO1);
+        }
+
+        List<CartDTO> cartDTOS = new ArrayList<>();
+        for (CartDTO c1 : list1) {
+            for (CartDTO c2 : list2) {
+                if (c2.getProductId().equals(c1.getProductId())) {
+                    if (!cartDTOS.contains(c1)) {
+                        cartDTOS.add(c1);
+                    }
+                }
+            }
+        }
+        list1.removeAll(cartDTOS);
+        for (CartDTO c : list1) {
+            System.out.println(c);
+        }
     }
 
     private static void test() {

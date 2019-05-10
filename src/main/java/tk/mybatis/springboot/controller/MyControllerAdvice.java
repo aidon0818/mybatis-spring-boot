@@ -43,7 +43,7 @@ public class MyControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public Map errorHandler(Exception ex) {
         Map map = new HashMap();
-        map.put("code", 100);
+        map.put("code", -1);
         map.put("msg", ex.getMessage());
         return map;
     }

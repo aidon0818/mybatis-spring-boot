@@ -1,0 +1,2 @@
+14:55:46 ERROR [main] tk.mybatis.springboot.util.RSAUtilApi: RSAHelperApi -- setRSAHelper is fail:java.security.spec.InvalidKeySpecException: java.security.InvalidKeyException: invalid key format
+14:55:46 ERROR [main] tk.mybatis.springboot.util.RSAUtilApi: RSAHelperApi -- getRSAHelper is fail:java.lang.NullPointerException

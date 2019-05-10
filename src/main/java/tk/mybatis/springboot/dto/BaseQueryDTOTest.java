@@ -1,6 +1,6 @@
 package tk.mybatis.springboot.dto;
 
-public class BaseQueryDTO {
+public class BaseQueryDTOTest {
     /**
      * 组织ID
      */

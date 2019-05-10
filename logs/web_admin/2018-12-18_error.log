@@ -1,0 +1,6 @@
+09:07:23 ERROR [main] tk.mybatis.springboot.util.Test0001: java.text.ParseException: Unparseable date: "20181215161027"
+java.text.ParseException: Unparseable date: "20181215161027"
+	at java.text.DateFormat.parse(DateFormat.java:366)
+	at tk.mybatis.springboot.util.Test0001.main(Test0001.java:39)
+09:10:43 ERROR [main] tk.mybatis.springboot.util.Test0001: java.text.ParseException: Unparseable date: "20181215161027"
+09:10:52 ERROR [main] tk.mybatis.springboot.util.Test0001: Unparseable date: "20181215161027"

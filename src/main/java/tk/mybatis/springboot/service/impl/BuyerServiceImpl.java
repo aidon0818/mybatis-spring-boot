@@ -1,6 +1,8 @@
 package tk.mybatis.springboot.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.springboot.dto.OrderDTO;
@@ -16,6 +18,7 @@ import tk.mybatis.springboot.service.OrderService;
 @Service
 @Slf4j
 public class BuyerServiceImpl implements BuyerService {
+    private final static Logger log= LoggerFactory.getLogger(BuyerServiceImpl.class);
     @Autowired
     private OrderService orderService;
 

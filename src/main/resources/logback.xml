@@ -78,7 +78,7 @@
     </appender>
 
     <!-- 开发环境 -->
-    <logger name="tk.mybatis.springboot.mapper" level="DEBUG" additivity="false">
+    <logger name="tk.mybatis.springboot.*" level="DEBUG" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="DEBUG"/>
         <appender-ref ref="ERROR_ONLY"/>

@@ -22,20 +22,21 @@ public class DistinctTest {
     private static void test1() {
         List<String> list = Arrays.asList("AA", "BB", "CC", "BB", "CC", "AA", "AA");
         long l = list.stream().distinct().count();
-        System.out.println("No. of distinct elements:"+l);
+        System.out.println("No. of distinct elements:" + l);
         String output = list.stream().distinct().collect(Collectors.joining(","));
         System.out.println(output);
     }
+
     private static void test2() {
-        List<CartDTO> ls=new ArrayList<>();
-        ls.add(new CartDTO("a",1));
-        ls.add(new CartDTO("a1",1));
-        ls.add(new CartDTO("a2",1));
-        ls.add(new CartDTO("a1",1));
-        ls.add(new CartDTO("a",2));
+        List<CartDTO> ls = new ArrayList<>();
+        ls.add(new CartDTO("a", 1));
+        ls.add(new CartDTO("a1", 1));
+        ls.add(new CartDTO("a2", 1));
+        ls.add(new CartDTO("a1", 1));
+        ls.add(new CartDTO("a", 2));
         long l = ls.stream().distinct().count();
-        System.out.println("No. of distinct books:"+l);
-        ls.stream().distinct().forEach(b -> System.out.println(b.getProductId()+ "," + b.getProductQuantity()));
+        System.out.println("No. of distinct books:" + l);
+        ls.stream().distinct().forEach(b -> System.out.println(b.getProductId() + "," + b.getProductQuantity()));
     }
 
 }

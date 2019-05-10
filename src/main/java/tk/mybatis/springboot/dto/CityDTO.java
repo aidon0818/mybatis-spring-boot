@@ -1,6 +1,6 @@
 package tk.mybatis.springboot.dto;
 
-public class CityDTO extends BaseQueryDTO {
+public class CityDTO extends BaseQueryDTOTest {
     private String name;
     private Integer state;
 

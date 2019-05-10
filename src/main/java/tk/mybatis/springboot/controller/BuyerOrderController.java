@@ -2,6 +2,8 @@ package tk.mybatis.springboot.controller;
 
 import com.alibaba.druid.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
@@ -39,6 +41,7 @@ public class BuyerOrderController {
 
     @Autowired
     private BuyerService buyerService;
+    Logger log = LoggerFactory.getLogger(BuyerOrderController.class);
 
     /***
      * 创建订单
